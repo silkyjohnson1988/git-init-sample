@@ -1,5 +1,5 @@
-# git-init-sample
-## Instructions
+# git-init-sample 
+## Instructions 
 
 Work in your group to implement the following user stories:
 
