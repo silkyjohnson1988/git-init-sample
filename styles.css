@@ -12,7 +12,7 @@ body {
 
 header {
     background-color: #333;
-    color: #fff;
+    color: #067020;
     position: fixed;
     top: 0;
     left: 0;
@@ -20,13 +20,14 @@ header {
     padding: 10px 0;
 }
 
+/* Flexbox styles for the navigation menu */
 nav ul {
     list-style: none;
-    text-align: center;
+    display: flex; /* Use Flexbox */
+    justify-content: center; /* Center the navigation items horizontally */
 }
 
 nav ul li {
-    display: inline;
     margin-right: 20px;
 }
 
@@ -39,7 +40,11 @@ nav a {
     color: #fff;
 }
 
-main {
+/* Flexbox container for main content */
+.content-container {
+    display: flex; /* Use Flexbox */
+    flex-direction: column; /* Stack child elements vertically */
+    align-items: center; /* Center child elements horizontally */
     padding: 80px 0;
     text-align: center;
 }
@@ -49,6 +54,7 @@ h1 {
     margin-bottom: 20px;
 }
 
+/* Flexbox styles for a centered image */
 img {
     max-width: 100%;
     height: auto;
