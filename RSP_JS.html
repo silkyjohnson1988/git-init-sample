@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    #results {
+      font-size: 1.2em;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rock Paper Scissors Game</h1>
+  <p>Choose Rock (R), Paper (P), or Scissors (S) and click "Play" to start.</p>
+  <button onclick="playGame()">Play</button>
+  <div id="results"></div>
+
+  <script>
+    let userWins = 0;
+    let computerWins = 0;
+    let ties = 0;
+
+    function playGame() {
+      const userChoice = prompt("Enter R for Rock, P for Paper, or S for Scissors:").toUpperCase();
+      const computerChoice = generateComputerChoice();
+      const result = determineWinner(userChoice, computerChoice);
+
+      let message = `You chose ${userChoice}. The computer chose ${computerChoice}. `;
+      if (result === 'user') {
+        message += 'You win!';
+        userWins++;
+      } else if (result === 'computer') {
+        message += 'Computer wins!';
+        computerWins++;
+      } else {
+        message += 'It\'s a tie!';
+        ties++;
+      }
+
+      const totalResults = `Wins: ${userWins}, Ties: ${ties}, Losses: ${computerWins}`;
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = message + '<br>' + totalResults;
+    }
+
+    function generateComputerChoice() {
+      const choices = ['R', 'P', 'S'];
+      const randomIndex = Math.floor(Math.random() * 3);
+      return choices[randomIndex];
+    }
+
+    function determineWinner(user, computer) {
+      if (user === computer) {
+        return 'tie';
+      } else if (
+        (user === 'R' && computer === 'S') ||
+        (user === 'P' && computer === 'R') ||
+        (user === 'S' && computer === 'P')
+      ) {
+        return 'user';
+      } else {
+        return 'computer';
+      }
+    }
+  </script>
+</body>
+</html>
