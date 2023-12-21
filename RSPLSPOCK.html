@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Rock Paper Scissors Mighty Spock Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    #results {
+      font-size: 1.2em;
+      margin: 20px 0;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Rock Paper Scissors Mighty Spock Game</h1>
+  <p>Choose your move:</p>
+  <button onclick="playGame('Rock')">Rock</button>
+  <button onclick="playGame('Paper')">Paper</button>
+  <button onclick="playGame('Scissors')">Scissors</button>
+  <button onclick="playGame('Mighty')">Mighty</button>
+  <button onclick="playGame('Spock')">Spock</button>
+
+  <div id="results"></div>
+
+  <script>
+    let userWins = 0;
+    let computerWins = 0;
+    let ties = 0;
+
+    function playGame(userChoice) {
+      const computerChoice = generateComputerChoice();
+      const result = determineWinner(userChoice, computerChoice);
+
+      let message = `You chose ${userChoice}. The computer chose ${computerChoice}. `;
+      if (result === 'user') {
+        message += 'You win!';
+        userWins++;
+      } else if (result === 'computer') {
+        message += 'Computer wins!';
+        computerWins++;
+      } else {
+        message += 'It\'s a tie!';
+        ties++;
+      }
+
+      const totalResults = `Wins: ${userWins}, Ties: ${ties}, Losses: ${computerWins}`;
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = message + '<br>' + totalResults;
+    }
+
+    function generateComputerChoice() {
+      const choices = ['Rock', 'Paper', 'Scissors', 'Mighty', 'Spock'];
+      const randomIndex = Math.floor(Math.random() * 5);
+      return choices[randomIndex];
+    }
+
+    function determineWinner(user, computer) {
+      if (user === computer) {
+        return 'tie';
+      } else if (
+        (user === 'Rock' && computer === 'Scissors') ||
+        (user === 'Paper' && computer === 'Rock') ||
+        (user === 'Scissors' && computer === 'Mighty') ||
+        (user === 'Mighty' && computer === 'Spock') ||
+        (user === 'Spock' && computer === 'Paper') ||
+        (user === 'Rock' && computer === 'Mighty') ||
+        (user === 'Mighty' && computer === 'Scissors') ||
+        (user === 'Scissors' && computer === 'Paper') ||
+        (user === 'Paper' && computer === 'Spock') ||
+        (user === 'Spock' && computer === 'Rock')
+      ) {
+        return 'user';
+      } else {
+        return 'computer';
+      }
+    }
+  </script>
+</body>
+
+</html>
